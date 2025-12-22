@@ -2,8 +2,6 @@ import sys
 
 import pygame
 
-print(pygame.__version__)
-
 class AlienInvasion:
     """Overall class to manage game asserts and behavior."""
 
