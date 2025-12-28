@@ -13,8 +13,12 @@ class AlienInvasion:
         pygame.init()
         self.settings = Setting()
 
-        self.screen = pygame.display.set_mode((
-            self.settings.screen_width,self.settings.screen_hight))
+        # self.screen = pygame.display.set_mode((
+        #     self.settings.screen_width,self.settings.screen_hight))
+        
+        self.screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+        self.settings.screen_width = self.screen.get_rect().width
+        self.settings.screen_hight = self.screen.get_rect().height
         pygame.display.set_caption("Alien Invasion")
 
         #Creating instanse of the Ship class
@@ -53,7 +57,7 @@ class AlienInvasion:
             sys.exit()
     
     def check_key_up_events(self, event):
-        """Responding to keyup"""
+        """Respond to keyup"""
         if event.key == pygame.K_RIGHT:
             self.ship.moving_right = False
         elif event.key == pygame.K_LEFT:
