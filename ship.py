@@ -20,10 +20,13 @@ class Ship(Sprite):
 
         #Store decimal value for ships horizontal position
         self.x = float(self.rect.x)
+        self.y = float(self.rect.y)
 
         #Movement flag
         self.moving_right = False
         self.moving_left = False
+        self.moving_forward = False
+        self.moving_back = False
 
     def update(self):
         """Update the ship position based on the flag"""
@@ -32,9 +35,14 @@ class Ship(Sprite):
             self.x += self.settings.ship_speed
         if self.moving_left and self.rect.left > 0:
             self.x -= self.settings.ship_speed
-        
-        #Update rect object from self.x
+        if self.moving_forward and self.rect.top > 0:
+            self.y -= self.settings.ship_speed
+        if self.moving_back and self.rect.bottom < self.screen_rect.bottom:
+            self.y += self.settings.ship_speed
+
+        #Update rect object from self.x and self.y
         self.rect.x = self.x
+        self.rect.y = self.y
 
     def blitme(self):
         """Draw the script at it's current location"""
